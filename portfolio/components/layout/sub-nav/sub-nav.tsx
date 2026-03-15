@@ -4,11 +4,12 @@ import { useEffect, useState } from 'react'
 import styles from './sub-nav.module.css'
 
 const SUB_NAV_LINKS = [
-  { label: 'À propos',   sectionId: 'about'      },
-  { label: 'Expérience', sectionId: 'experience' },
-  { label: 'Projets',    sectionId: 'projects'      },
-  { label: 'Parcours',   sectionId: 'background' },
-  { label: 'Formation',  sectionId: 'education'  },
+  { label: 'À propos',    sectionId: 'about'       },
+  { label: 'Expérience',  sectionId: 'experience'  },
+  { label: 'Projets',     sectionId: 'projects'    },
+  { label: 'Parcours',    sectionId: 'parcours'    },
+  { label: 'Compétences', sectionId: 'background'  },
+  { label: 'Formation',   sectionId: 'education'   },
 ]
 
 /**

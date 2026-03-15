@@ -1,0 +1,98 @@
+.section {
+  background: var(--bg-primary);
+  padding: 80px 0 100px;
+  scroll-margin-top: var(--sub-nav-height);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+}
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 48px;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 28px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--border-dark);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  gap: 28px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemDot {
+  position: absolute;
+  left: -24px;
+  top: 34px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--bg-primary);
+  flex-shrink: 0;
+}
+
+.itemDot[data-kind='role'] {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.itemDot[data-kind='education'] {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.itemDate {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+  letter-spacing: 0.03em;
+}
+
+.itemLabel {
+  font-size: 17px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.itemSub {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.45);
+}
