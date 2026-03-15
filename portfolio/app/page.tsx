@@ -13,13 +13,15 @@ import MarqueeSection from '@/components/home/marquee-section'
 /**
  * Home page — assembles all homepage sections with data fetched from the database.
  */
-export default function HomePage() {
-  const owner         = ownerController.getOwner()
-  const heroMessages  = heroMessageController.getAll()
-  const featuredRoles = roleController.getFeatured(2)
-  const allFeatured   = roleController.getFeatured(1)
-  const categories    = skillCategoryController.getAllWithSkills()
-  const keywords      = keywordController.getAll()
+export default async function HomePage() {
+  const [owner, heroMessages, featuredRoles, allFeatured, categories, keywords] = await Promise.all([
+    ownerController.getOwner(),
+    heroMessageController.getAll(),
+    roleController.getFeatured(2),
+    roleController.getFeatured(1),
+    skillCategoryController.getAllWithSkills(),
+    keywordController.getAll(),
+  ])
 
   return (
     <main>

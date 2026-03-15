@@ -13,9 +13,9 @@ export class HeroMessageController {
 
   /**
    * Returns all hero messages.
-   * @returns {HeroMessage[]} All hero messages.
+   * @returns {Promise<HeroMessage[]>} All hero messages.
    */
-  getAll(): HeroMessage[] {
+  async getAll(): Promise<HeroMessage[]> {
     return this.service.getAll()
   }
 }

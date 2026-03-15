@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { Project } from '@/models/project.model'
 import { ProjectMapper, type ProjectRow } from '@/mappers/project.mapper'
 
@@ -6,24 +6,27 @@ import { ProjectMapper, type ProjectRow } from '@/mappers/project.mapper'
  * Provides database access for the Project entity.
  */
 export class ProjectRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all projects from the database.
-   * @returns {Project[]} All projects.
+   * @returns {Promise<Project[]>} All projects.
    */
-  getAll(): Project[] {
-    const rows = this.db.prepare('SELECT * FROM project').all() as ProjectRow[]
-    return rows.map(ProjectMapper.fromRow)
+  async getAll(): Promise<Project[]> {
+    const { rows } = await this.db.execute('SELECT * FROM project')
+    return (rows as unknown as ProjectRow[]).map(ProjectMapper.fromRow)
   }
 
   /**
    * Retrieves all projects associated with the given role.
    * @param {number} roleId - The role identifier.
-   * @returns {Project[]} Projects linked to the given role.
+   * @returns {Promise<Project[]>} Projects linked to the given role.
    */
-  getByRole(roleId: number): Project[] {
-    const rows = this.db.prepare('SELECT * FROM project WHERE id_role = ?').all(roleId) as ProjectRow[]
-    return rows.map(ProjectMapper.fromRow)
+  async getByRole(roleId: number): Promise<Project[]> {
+    const { rows } = await this.db.execute({
+      sql:  'SELECT * FROM project WHERE id_role = ?',
+      args: [roleId],
+    })
+    return (rows as unknown as ProjectRow[]).map(ProjectMapper.fromRow)
   }
 }

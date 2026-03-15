@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { ProjectImage } from '@/models/project-image.model'
 import { ProjectImageMapper, type ProjectImageRow } from '@/mappers/project-image.mapper'
 
@@ -6,17 +6,18 @@ import { ProjectImageMapper, type ProjectImageRow } from '@/mappers/project-imag
  * Provides database access for the ProjectImage entity.
  */
 export class ProjectImageRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all images associated with the given project.
    * @param {number} projectId - The project identifier.
-   * @returns {ProjectImage[]} Images linked to the given project.
+   * @returns {Promise<ProjectImage[]>} Images linked to the given project.
    */
-  getByProject(projectId: number): ProjectImage[] {
-    const rows = this.db
-      .prepare('SELECT * FROM ProjectImage WHERE id_project = ?')
-      .all(projectId) as ProjectImageRow[]
-    return rows.map(ProjectImageMapper.fromRow)
+  async getByProject(projectId: number): Promise<ProjectImage[]> {
+    const { rows } = await this.db.execute({
+      sql:  'SELECT * FROM ProjectImage WHERE id_project = ?',
+      args: [projectId],
+    })
+    return (rows as unknown as ProjectImageRow[]).map(ProjectImageMapper.fromRow)
   }
 }

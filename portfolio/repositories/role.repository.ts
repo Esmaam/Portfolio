@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { Role } from '@/models/role.model'
 import { RoleMapper, type RoleRow } from '@/mappers/role.mapper'
 
@@ -6,33 +6,37 @@ import { RoleMapper, type RoleRow } from '@/mappers/role.mapper'
  * Provides database access for the Role entity.
  */
 export class RoleRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all roles from the database, ordered by start date descending.
-   * @returns {Role[]} All roles.
+   * @returns {Promise<Role[]>} All roles.
    */
-  getAll(): Role[] {
-    const rows = this.db.prepare('SELECT * FROM role ORDER BY start_date DESC').all() as RoleRow[]
-    return rows.map(RoleMapper.fromRow)
+  async getAll(): Promise<Role[]> {
+    const { rows } = await this.db.execute('SELECT * FROM role ORDER BY start_date DESC')
+    return (rows as unknown as RoleRow[]).map(RoleMapper.fromRow)
   }
 
   /**
    * Retrieves all roles marked as visible, ordered by start date descending.
-   * @returns {Role[]} All visible roles.
+   * @returns {Promise<Role[]>} All visible roles.
    */
-  getVisible(): Role[] {
-    const rows = this.db.prepare('SELECT * FROM role WHERE visible = 1 ORDER BY start_date DESC').all() as RoleRow[]
-    return rows.map(RoleMapper.fromRow)
+  async getVisible(): Promise<Role[]> {
+    const { rows } = await this.db.execute('SELECT * FROM role WHERE visible = 1 ORDER BY start_date DESC')
+    return (rows as unknown as RoleRow[]).map(RoleMapper.fromRow)
   }
 
   /**
    * Retrieves a single role by its identifier.
    * @param {number} id - The role identifier.
-   * @returns {Role | undefined} The matching role, or undefined if not found.
+   * @returns {Promise<Role | undefined>} The matching role, or undefined if not found.
    */
-  getById(id: number): Role | undefined {
-    const row = this.db.prepare('SELECT * FROM role WHERE id_role = ?').get(id) as RoleRow | undefined
+  async getById(id: number): Promise<Role | undefined> {
+    const { rows } = await this.db.execute({
+      sql:  'SELECT * FROM role WHERE id_role = ?',
+      args: [id],
+    })
+    const row = rows[0] as unknown as RoleRow | undefined
     return row ? RoleMapper.fromRow(row) : undefined
   }
 }

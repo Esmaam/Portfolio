@@ -13,18 +13,18 @@ export class CompanyController {
 
   /**
    * Returns all companies.
-   * @returns {Company[]} All companies.
+   * @returns {Promise<Company[]>} All companies.
    */
-  getAll(): Company[] {
+  async getAll(): Promise<Company[]> {
     return this.service.getAll()
   }
 
   /**
    * Returns the company matching the given identifier.
    * @param {number} id - The company identifier.
-   * @returns {Company | undefined} The matching company, or undefined if not found.
+   * @returns {Promise<Company | undefined>} The matching company, or undefined if not found.
    */
-  getById(id: number): Company | undefined {
+  async getById(id: number): Promise<Company | undefined> {
     return this.service.getById(id)
   }
 }

@@ -19,21 +19,23 @@ export class SkillCategoryService {
 
   /**
    * Returns all skill categories.
-   * @returns {SkillCategory[]} All skill categories.
+   * @returns {Promise<SkillCategory[]>} All skill categories.
    */
-  getAll(): SkillCategory[] {
+  async getAll(): Promise<SkillCategory[]> {
     return this.categoryRepository.getAll()
   }
 
   /**
    * Returns all skill categories enriched with their associated skills.
-   * @returns {SkillCategoryWithSkills[]} All categories with their skills.
+   * @returns {Promise<SkillCategoryWithSkills[]>} All categories with their skills.
    */
-  getAllWithSkills(): SkillCategoryWithSkills[] {
-    const categories = this.categoryRepository.getAll()
-    return categories.map(category => ({
-      category,
-      skills: this.skillRepository.getByCategory(category.idCategory),
-    }))
+  async getAllWithSkills(): Promise<SkillCategoryWithSkills[]> {
+    const categories = await this.categoryRepository.getAll()
+    return Promise.all(
+      categories.map(async category => ({
+        category,
+        skills: await this.skillRepository.getByCategory(category.idCategory),
+      }))
+    )
   }
 }

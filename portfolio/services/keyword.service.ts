@@ -9,9 +9,9 @@ export class KeywordService {
 
   /**
    * Returns all keywords.
-   * @returns {Keyword[]} All keywords.
+   * @returns {Promise<Keyword[]>} All keywords.
    */
-  getAll(): Keyword[] {
+  async getAll(): Promise<Keyword[]> {
     return this.repository.getAll()
   }
 }

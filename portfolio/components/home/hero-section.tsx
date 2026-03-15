@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Owner } from '@/models/owner.model'
 import type { HeroMessage } from '@/models/hero-message.model'
 import TypingText from './typing-text'
@@ -17,11 +18,17 @@ export default function HeroSection({ owner, heroMessages }: Props) {
   const messages = heroMessages.length > 0
     ? heroMessages.map(m => m.text)
     : ['une développeuse désireuse de créer des solutions utiles et bien construites.']
-  const initials = `${owner.firstName[0]}${owner.lastName[0]}`
 
   return (
     <section className={styles.section}>
-      <div className={styles.avatar}>{initials}</div>
+      <Image
+        src="/avatar.jpg"
+        alt={`${owner.firstName} ${owner.lastName}`}
+        width={100}
+        height={100}
+        className={styles.avatar}
+        priority
+      />
       <h1 className={styles.title}>
         Je suis {owner.firstName},{' '}
         <span className={styles.titleStrong}>

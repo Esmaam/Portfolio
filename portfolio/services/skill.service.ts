@@ -9,9 +9,9 @@ export class SkillService {
 
   /**
    * Returns all skills.
-   * @returns {Skill[]} All skills.
+   * @returns {Promise<Skill[]>} All skills.
    */
-  getAll(): Skill[] {
+  async getAll(): Promise<Skill[]> {
     return this.repository.getAll()
   }
 }

@@ -15,17 +15,17 @@ export class SkillCategoryController {
 
   /**
    * Returns all skill categories.
-   * @returns {SkillCategory[]} All skill categories.
+   * @returns {Promise<SkillCategory[]>} All skill categories.
    */
-  getAll(): SkillCategory[] {
+  async getAll(): Promise<SkillCategory[]> {
     return this.service.getAll()
   }
 
   /**
    * Returns all skill categories enriched with their associated skills.
-   * @returns {SkillCategoryWithSkills[]} All categories with their skills.
+   * @returns {Promise<SkillCategoryWithSkills[]>} All categories with their skills.
    */
-  getAllWithSkills(): SkillCategoryWithSkills[] {
+  async getAllWithSkills(): Promise<SkillCategoryWithSkills[]> {
     return this.service.getAllWithSkills()
   }
 }

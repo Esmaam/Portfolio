@@ -20,25 +20,25 @@ export class ProjectController {
 
   /**
    * Returns all projects.
-   * @returns {Project[]} All projects.
+   * @returns {Promise<Project[]>} All projects.
    */
-  getAll(): Project[] {
+  async getAll(): Promise<Project[]> {
     return this.service.getAll()
   }
 
   /**
    * Returns all projects enriched with their associated keywords.
-   * @returns {ProjectWithKeywords[]} All projects with their keywords.
+   * @returns {Promise<ProjectWithKeywords[]>} All projects with their keywords.
    */
-  getAllWithKeywords(): ProjectWithKeywords[] {
+  async getAllWithKeywords(): Promise<ProjectWithKeywords[]> {
     return this.service.getAllWithKeywords()
   }
 
   /**
    * Returns all projects enriched with their keywords and images.
-   * @returns {ProjectWithDetails[]} All projects with full details.
+   * @returns {Promise<ProjectWithDetails[]>} All projects with full details.
    */
-  getAllWithDetails(): ProjectWithDetails[] {
+  async getAllWithDetails(): Promise<ProjectWithDetails[]> {
     return this.service.getAllWithDetails()
   }
 }

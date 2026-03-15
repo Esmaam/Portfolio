@@ -49,7 +49,7 @@ export async function sendContactEmailAction(
     return { success: false, error: parsed.error }
   }
 
-  const owner = ownerController.getOwner()
+  const owner = await ownerController.getOwner()
   const contactService = new ContactService(new NodemailerEmailSender())
 
   try {

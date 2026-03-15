@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { SkillCategory } from '@/models/skill-category.model'
 import { SkillCategoryMapper, type SkillCategoryRow } from '@/mappers/skill-category.mapper'
 
@@ -6,14 +6,14 @@ import { SkillCategoryMapper, type SkillCategoryRow } from '@/mappers/skill-cate
  * Provides database access for the SkillCategory entity.
  */
 export class SkillCategoryRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all skill categories from the database.
-   * @returns {SkillCategory[]} All skill categories.
+   * @returns {Promise<SkillCategory[]>} All skill categories.
    */
-  getAll(): SkillCategory[] {
-    const rows = this.db.prepare('SELECT * FROM skillcategory').all() as SkillCategoryRow[]
-    return rows.map(SkillCategoryMapper.fromRow)
+  async getAll(): Promise<SkillCategory[]> {
+    const { rows } = await this.db.execute('SELECT * FROM skillcategory')
+    return (rows as unknown as SkillCategoryRow[]).map(SkillCategoryMapper.fromRow)
   }
 }
