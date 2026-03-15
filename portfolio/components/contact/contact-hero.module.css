@@ -1,0 +1,85 @@
+.section {
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  background: radial-gradient(ellipse 80% 60% at 50% 0%, #111a28 0%, #0a0c0f 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.title {
+  font-size: clamp(52px, 8vw, 96px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  line-height: 1.05;
+}
+
+.subtitle {
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 48px;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btnLight,
+.btnDark {
+  padding: 14px 28px;
+  border-radius: 100px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.btnLight {
+  background: #ffffff;
+  color: #0a0c0f;
+}
+
+.btnLight:hover {
+  opacity: 0.85;
+}
+
+.btnDark {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btnDark:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.scroll {
+  position: absolute;
+  bottom: 40px;
+  color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.scroll:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
