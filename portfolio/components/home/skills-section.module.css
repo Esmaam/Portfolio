@@ -1,0 +1,72 @@
+.section {
+  background: #fff;
+  padding: 100px 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+}
+
+.headline {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.25;
+  color: var(--text-muted-dark);
+  margin-bottom: 56px;
+  letter-spacing: -0.02em;
+}
+
+.headline strong {
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.muted {
+  color: var(--text-muted-dark);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-card-light);
+  border-radius: var(--radius);
+  padding: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.cardTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+}
+
+.cardSkills {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted-dark);
+}
