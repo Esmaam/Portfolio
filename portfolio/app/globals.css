@@ -1,0 +1,61 @@
+/* ─── RESET ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── DESIGN TOKENS ──────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-primary:       #0e1014;
+  --bg-nav:           #1c1c1e;
+  --bg-light:         #f2f1ef;
+  --bg-dark:          #10141a;
+  --bg-darker:        #080a0c;
+  --bg-card-dark:     rgba(255, 255, 255, 0.04);
+  --bg-card-dark-hover: rgba(255, 255, 255, 0.07);
+  --bg-card-light:    #ebebeb;
+
+  /* Text */
+  --text-white:       #ffffff;
+  --text-light:       #e8e6e1;
+  --text-muted-white: rgba(255, 255, 255, 0.45);
+  --text-dark:        #1a1916;
+  --text-muted-dark:  #7a7870;
+
+  /* Borders */
+  --border-dark:      rgba(255, 255, 255, 0.08);
+  --border-light:     rgba(0, 0, 0, 0.1);
+
+  /* Tags / Pills */
+  --tag-bg-dark:      rgba(255, 255, 255, 0.07);
+  --tag-border-dark:  rgba(255, 255, 255, 0.15);
+  --tag-bg-light:     rgba(0, 0, 0, 0.04);
+  --tag-border-light: rgba(0, 0, 0, 0.12);
+
+  /* Fonts — injected by next/font */
+  --font-sans:   'Instrument Sans', system-ui, sans-serif;
+  --font-serif:  'Instrument Serif', Georgia, serif;
+
+  /* Layout */
+  --max-width:      1200px;
+  --radius:         16px;
+  --nav-height:         56px;
+  --sub-nav-height:     48px;
+  --nav-visible-height: var(--nav-height);
+}
+
+/* ─── BASE ───────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-primary);
+  color: var(--text-white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
