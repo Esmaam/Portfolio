@@ -1,0 +1,99 @@
+.section {
+  background: var(--bg-dark);
+  padding: 100px 0;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+}
+
+.headline {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 44px);
+  line-height: 1.25;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 56px;
+  letter-spacing: -0.02em;
+}
+
+.headline strong {
+  color: var(--text-white);
+  font-weight: 600;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+
+@media (max-width: 768px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--bg-card-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: background 0.2s;
+}
+
+.card:hover {
+  background: var(--bg-card-dark-hover);
+}
+
+.company {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.roleTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+}
+
+.tagline {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.cta {
+  text-align: center;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 14px 32px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.5);
+}
