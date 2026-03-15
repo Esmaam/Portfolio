@@ -1,0 +1,108 @@
+.section {
+  background: var(--bg-light);
+  padding: 80px 0 100px;
+  scroll-margin-top: var(--sub-nav-height);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+}
+
+.sectionTitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted-dark);
+  margin-bottom: 48px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 40px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.entry:last-child {
+  border-bottom: 1px solid var(--border-light);
+}
+
+@media (max-width: 768px) {
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.entryMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.dates {
+  font-size: 13px;
+  color: var(--text-muted-dark);
+  font-weight: 500;
+}
+
+.city {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.entryBody {}
+
+.company {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 4px;
+}
+
+.roleTitle {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted-dark);
+  margin-bottom: 16px;
+}
+
+.description {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-muted-dark);
+  margin-bottom: 20px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--tag-bg-light);
+  border: 1px solid var(--tag-border-light);
+  color: rgba(0, 0, 0, 0.5);
+}

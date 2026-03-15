@@ -1,11 +1,16 @@
 import db from '@/lib/database'
 import { ProjectRepository } from '@/repositories/project.repository'
 import { KeywordRepository } from '@/repositories/keyword.repository'
+import { ProjectImageRepository } from '@/repositories/project-image.repository'
 import { ProjectService } from '@/services/project.service'
 import type { Project } from '@/models/project.model'
-import type { ProjectWithKeywords } from '@/services/project.service'
+import type { ProjectWithKeywords, ProjectWithDetails } from '@/services/project.service'
 
-const service = new ProjectService(new ProjectRepository(db), new KeywordRepository(db))
+const service = new ProjectService(
+  new ProjectRepository(db),
+  new KeywordRepository(db),
+  new ProjectImageRepository(db),
+)
 
 /**
  * Orchestrates project data retrieval.
@@ -27,6 +32,14 @@ export class ProjectController {
    */
   getAllWithKeywords(): ProjectWithKeywords[] {
     return this.service.getAllWithKeywords()
+  }
+
+  /**
+   * Returns all projects enriched with their keywords and images.
+   * @returns {ProjectWithDetails[]} All projects with full details.
+   */
+  getAllWithDetails(): ProjectWithDetails[] {
+    return this.service.getAllWithDetails()
   }
 }
 
