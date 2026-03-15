@@ -28,34 +28,38 @@ export class ProjectService {
 
   /**
    * Returns all projects.
-   * @returns {Project[]} All projects.
+   * @returns {Promise<Project[]>} All projects.
    */
-  getAll(): Project[] {
+  async getAll(): Promise<Project[]> {
     return this.projectRepository.getAll()
   }
 
   /**
    * Returns all projects enriched with their associated keywords.
-   * @returns {ProjectWithKeywords[]} All projects with their keywords.
+   * @returns {Promise<ProjectWithKeywords[]>} All projects with their keywords.
    */
-  getAllWithKeywords(): ProjectWithKeywords[] {
-    const projects = this.projectRepository.getAll()
-    return projects.map(project => ({
-      project,
-      keywords: this.keywordRepository.getByProject(project.idProject),
-    }))
+  async getAllWithKeywords(): Promise<ProjectWithKeywords[]> {
+    const projects = await this.projectRepository.getAll()
+    return Promise.all(
+      projects.map(async project => ({
+        project,
+        keywords: await this.keywordRepository.getByProject(project.idProject),
+      }))
+    )
   }
 
   /**
    * Returns all projects enriched with their keywords and images.
-   * @returns {ProjectWithDetails[]} All projects with full details.
+   * @returns {Promise<ProjectWithDetails[]>} All projects with full details.
    */
-  getAllWithDetails(): ProjectWithDetails[] {
-    const projects = this.projectRepository.getAll()
-    return projects.map(project => ({
-      project,
-      keywords: this.keywordRepository.getByProject(project.idProject),
-      images:   this.projectImageRepository.getByProject(project.idProject),
-    }))
+  async getAllWithDetails(): Promise<ProjectWithDetails[]> {
+    const projects = await this.projectRepository.getAll()
+    return Promise.all(
+      projects.map(async project => ({
+        project,
+        keywords: await this.keywordRepository.getByProject(project.idProject),
+        images:   await this.projectImageRepository.getByProject(project.idProject),
+      }))
+    )
   }
 }

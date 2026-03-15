@@ -9,9 +9,9 @@ export class OwnerService {
 
   /**
    * Returns the portfolio owner.
-   * @returns {Owner} The portfolio owner.
+   * @returns {Promise<Owner>} The portfolio owner.
    */
-  getOwner(): Owner {
+  async getOwner(): Promise<Owner> {
     return this.repository.getOwner()
   }
 }

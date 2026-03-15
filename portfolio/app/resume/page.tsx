@@ -18,12 +18,14 @@ export const metadata: Metadata = {
 /**
  * CV page — assembles all resume sections with data fetched from the database.
  */
-export default function ResumePage() {
-  const owner      = ownerController.getOwner()
-  const roles      = roleController.getVisibleWithDetails()
-  const projects   = projectController.getAllWithKeywords()
-  const categories = skillCategoryController.getAllWithSkills()
-  const education  = educationController.getAll()
+export default async function ResumePage() {
+  const [owner, roles, projects, categories, education] = await Promise.all([
+    ownerController.getOwner(),
+    roleController.getVisibleWithDetails(),
+    projectController.getAllWithKeywords(),
+    skillCategoryController.getAllWithSkills(),
+    educationController.getAll(),
+  ])
 
   const categoriesDto = categories.map(({ category, skills }) => ({
     category: { idCategory: category.idCategory, title: category.title },

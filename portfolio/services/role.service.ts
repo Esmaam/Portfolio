@@ -23,31 +23,33 @@ export class RoleService {
 
   /**
    * Returns all visible roles.
-   * @returns {Role[]} All roles with visible flag set to true.
+   * @returns {Promise<Role[]>} All roles with visible flag set to true.
    */
-  getVisible(): Role[] {
+  async getVisible(): Promise<Role[]> {
     return this.roleRepository.getVisible()
   }
 
   /**
    * Returns all visible roles enriched with their company and keywords.
-   * @returns {RoleWithDetails[]} All visible roles with full details.
+   * @returns {Promise<RoleWithDetails[]>} All visible roles with full details.
    */
-  getVisibleWithDetails(): RoleWithDetails[] {
-    const roles = this.roleRepository.getVisible()
-    return roles.map(role => ({
-      role,
-      company:  this.companyRepository.getById(role.idCompany)!,
-      keywords: this.keywordRepository.getByRole(role.idRole),
-    }))
+  async getVisibleWithDetails(): Promise<RoleWithDetails[]> {
+    const roles = await this.roleRepository.getVisible()
+    return Promise.all(
+      roles.map(async role => ({
+        role,
+        company:  (await this.companyRepository.getById(role.idCompany))!,
+        keywords: await this.keywordRepository.getByRole(role.idRole),
+      }))
+    )
   }
 
   /**
    * Returns the most recent visible roles up to the given limit.
    * @param {number} limit - Maximum number of roles to return.
-   * @returns {RoleWithDetails[]} Featured roles with full details.
+   * @returns {Promise<RoleWithDetails[]>} Featured roles with full details.
    */
-  getFeatured(limit: number): RoleWithDetails[] {
-    return this.getVisibleWithDetails().slice(0, limit)
+  async getFeatured(limit: number): Promise<RoleWithDetails[]> {
+    return (await this.getVisibleWithDetails()).slice(0, limit)
   }
 }

@@ -13,9 +13,9 @@ export class EducationController {
 
   /**
    * Returns all education entries.
-   * @returns {Education[]} All education entries ordered by start date descending.
+   * @returns {Promise<Education[]>} All education entries ordered by start date descending.
    */
-  getAll(): Education[] {
+  async getAll(): Promise<Education[]> {
     return this.service.getAll()
   }
 }

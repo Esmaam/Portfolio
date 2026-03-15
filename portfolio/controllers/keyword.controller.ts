@@ -13,9 +13,9 @@ export class KeywordController {
 
   /**
    * Returns all keywords.
-   * @returns {Keyword[]} All keywords.
+   * @returns {Promise<Keyword[]>} All keywords.
    */
-  getAll(): Keyword[] {
+  async getAll(): Promise<Keyword[]> {
     return this.service.getAll()
   }
 }

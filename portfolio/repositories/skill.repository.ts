@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { Skill } from '@/models/skill.model'
 import { SkillMapper, type SkillRow } from '@/mappers/skill.mapper'
 
@@ -6,24 +6,27 @@ import { SkillMapper, type SkillRow } from '@/mappers/skill.mapper'
  * Provides database access for the Skill entity.
  */
 export class SkillRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all skills from the database.
-   * @returns {Skill[]} All skills.
+   * @returns {Promise<Skill[]>} All skills.
    */
-  getAll(): Skill[] {
-    const rows = this.db.prepare('SELECT * FROM skill').all() as SkillRow[]
-    return rows.map(SkillMapper.fromRow)
+  async getAll(): Promise<Skill[]> {
+    const { rows } = await this.db.execute('SELECT * FROM skill')
+    return (rows as unknown as SkillRow[]).map(SkillMapper.fromRow)
   }
 
   /**
    * Retrieves all skills belonging to the given category.
    * @param {number} categoryId - The category identifier.
-   * @returns {Skill[]} Skills matching the given category.
+   * @returns {Promise<Skill[]>} Skills matching the given category.
    */
-  getByCategory(categoryId: number): Skill[] {
-    const rows = this.db.prepare('SELECT * FROM skill WHERE id_category = ?').all(categoryId) as SkillRow[]
-    return rows.map(SkillMapper.fromRow)
+  async getByCategory(categoryId: number): Promise<Skill[]> {
+    const { rows } = await this.db.execute({
+      sql:  'SELECT * FROM skill WHERE id_category = ?',
+      args: [categoryId],
+    })
+    return (rows as unknown as SkillRow[]).map(SkillMapper.fromRow)
   }
 }

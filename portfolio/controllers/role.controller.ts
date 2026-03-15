@@ -20,26 +20,26 @@ export class RoleController {
 
   /**
    * Returns all visible roles.
-   * @returns {Role[]} All roles with visible flag set to true.
+   * @returns {Promise<Role[]>} All roles with visible flag set to true.
    */
-  getVisible(): Role[] {
+  async getVisible(): Promise<Role[]> {
     return this.service.getVisible()
   }
 
   /**
    * Returns all visible roles enriched with their company and keywords.
-   * @returns {RoleWithDetails[]} All visible roles with full details.
+   * @returns {Promise<RoleWithDetails[]>} All visible roles with full details.
    */
-  getVisibleWithDetails(): RoleWithDetails[] {
+  async getVisibleWithDetails(): Promise<RoleWithDetails[]> {
     return this.service.getVisibleWithDetails()
   }
 
   /**
    * Returns the most recent visible roles up to the given limit.
    * @param {number} limit - Maximum number of roles to return.
-   * @returns {RoleWithDetails[]} Featured roles with full details.
+   * @returns {Promise<RoleWithDetails[]>} Featured roles with full details.
    */
-  getFeatured(limit: number): RoleWithDetails[] {
+  async getFeatured(limit: number): Promise<RoleWithDetails[]> {
     return this.service.getFeatured(limit)
   }
 }

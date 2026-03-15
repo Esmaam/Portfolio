@@ -1,0 +1,32 @@
+.main {
+  background: var(--bg-primary);
+  min-height: 100vh;
+}
+
+.hero {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-height) + 80px) 40px 60px;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #1a2535 0%, #0e1014 100%);
+}
+
+.heroTitle {
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  max-width: 700px;
+}
+
+.heroTitle strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.muted {
+  color: rgba(255, 255, 255, 0.45);
+}

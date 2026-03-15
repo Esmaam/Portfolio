@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Owner } from '@/models/owner.model'
 import styles from './about-section.module.css'
 
@@ -23,9 +24,13 @@ export default function AboutSection({ owner }: Props) {
     <section id="about" className={styles.section}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <div className={styles.initials}>
-            {owner.firstName[0]}{owner.lastName[0]}
-          </div>
+          <Image
+            src="/avatar.jpg"
+            alt={`${owner.firstName} ${owner.lastName}`}
+            width={80}
+            height={80}
+            className={styles.initials}
+          />
           <div>
             <h1 className={styles.name}>{owner.firstName} {owner.lastName}</h1>
             <p className={styles.role}>Développeuse Polyvalente Junior</p>
@@ -41,12 +46,15 @@ export default function AboutSection({ owner }: Props) {
               Compétences en gestion de projet, expertise en anglais technique.
             </p>
             <div className={styles.links}>
-              <a href={`mailto:${owner.email}`} className={styles.link}>{owner.email}</a>
+              <a href={`mailto:${owner.email}`} className={styles.link}>Email</a>
               {owner.linkedinProfileUrl && (
                 <a href={owner.linkedinProfileUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
                   LinkedIn
                 </a>
               )}
+              <a href="/cv-amaia-mescco.pdf" download className={styles.linkDownload}>
+                Télécharger le CV
+              </a>
             </div>
           </div>
 

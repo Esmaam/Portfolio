@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { HeroMessage } from '@/models/hero-message.model'
 import { HeroMessageMapper, type HeroMessageRow } from '@/mappers/hero-message.mapper'
 
@@ -6,14 +6,14 @@ import { HeroMessageMapper, type HeroMessageRow } from '@/mappers/hero-message.m
  * Provides database access for the HeroMessage entity.
  */
 export class HeroMessageRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all hero messages from the database.
-   * @returns {HeroMessage[]} All hero messages.
+   * @returns {Promise<HeroMessage[]>} All hero messages.
    */
-  getAll(): HeroMessage[] {
-    const rows = this.db.prepare('SELECT * FROM heromessage').all() as HeroMessageRow[]
-    return rows.map(HeroMessageMapper.fromRow)
+  async getAll(): Promise<HeroMessage[]> {
+    const { rows } = await this.db.execute('SELECT * FROM heromessage')
+    return (rows as unknown as HeroMessageRow[]).map(HeroMessageMapper.fromRow)
   }
 }

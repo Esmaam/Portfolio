@@ -1,4 +1,4 @@
-import type Database from 'better-sqlite3'
+import type { Client } from '@libsql/client'
 import { Company } from '@/models/company.model'
 import { CompanyMapper, type CompanyRow } from '@/mappers/company.mapper'
 
@@ -6,24 +6,28 @@ import { CompanyMapper, type CompanyRow } from '@/mappers/company.mapper'
  * Provides database access for the Company entity.
  */
 export class CompanyRepository {
-  constructor(private readonly db: Database.Database) {}
+  constructor(private readonly db: Client) {}
 
   /**
    * Retrieves all companies from the database.
-   * @returns {Company[]} All companies.
+   * @returns {Promise<Company[]>} All companies.
    */
-  getAll(): Company[] {
-    const rows = this.db.prepare('SELECT * FROM company').all() as CompanyRow[]
-    return rows.map(CompanyMapper.fromRow)
+  async getAll(): Promise<Company[]> {
+    const { rows } = await this.db.execute('SELECT * FROM company')
+    return (rows as unknown as CompanyRow[]).map(CompanyMapper.fromRow)
   }
 
   /**
    * Retrieves a company by its identifier.
    * @param {number} id - The company identifier.
-   * @returns {Company | undefined} The matching company, or undefined if not found.
+   * @returns {Promise<Company | undefined>} The matching company, or undefined if not found.
    */
-  getById(id: number): Company | undefined {
-    const row = this.db.prepare('SELECT * FROM company WHERE id_company = ?').get(id) as CompanyRow | undefined
+  async getById(id: number): Promise<Company | undefined> {
+    const { rows } = await this.db.execute({
+      sql:  'SELECT * FROM company WHERE id_company = ?',
+      args: [id],
+    })
+    const row = rows[0] as unknown as CompanyRow | undefined
     return row ? CompanyMapper.fromRow(row) : undefined
   }
 }
