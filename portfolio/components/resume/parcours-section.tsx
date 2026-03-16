@@ -41,6 +41,11 @@ export default function ParcourSection({ roles, education }: Props) {
     <section id="parcours" className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Parcours</h2>
+        <p className={styles.intro}>
+          Mon parcours est atypique, et c&apos;est précisément ce qui a forgé ma grande capacité d&apos;adaptation.
+          Chaque étape ci-dessous a contribué à élargir ma perspective : sens du service, communication, gestion du stress, travail en équipe.
+          Des compétences que je mets aujourd&apos;hui au service du développement.
+        </p>
         <div className={styles.timeline}>
           {items.map((item, i) => (
             <div key={i} className={styles.item}>

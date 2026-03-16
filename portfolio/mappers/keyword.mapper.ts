@@ -1,8 +1,9 @@
 import { Keyword } from '@/models/keyword.model'
 
 export type KeywordRow = {
-  id_keyword: number
-  text:       string
+  id_keyword:  number
+  text:        string
+  id_category: number | null
 }
 
 /**
@@ -15,6 +16,6 @@ export class KeywordMapper {
    * @returns {Keyword} The mapped Keyword instance.
    */
   static fromRow(row: KeywordRow): Keyword {
-    return new Keyword(row.id_keyword, row.text)
+    return new Keyword(row.id_keyword, row.text, row.id_category)
   }
 }

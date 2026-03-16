@@ -9,7 +9,6 @@ import ExperienceSection from '@/components/resume/experience-section'
 import ProjectsSection   from '@/components/resume/projects-section'
 import ParcourSection    from '@/components/resume/parcours-section'
 import BackgroundSection from '@/components/resume/background-section'
-import EducationSection  from '@/components/resume/education-section'
 
 export const metadata: Metadata = {
   title: 'CV – Amaïa Mescco',
@@ -41,7 +40,6 @@ export default async function ResumePage() {
       <ProjectsSection   projects={projects} />
       <ParcourSection    roles={roles} education={education} />
       <BackgroundSection categories={categoriesDto} />
-      <EducationSection  education={education} />
     </main>
   )
 }

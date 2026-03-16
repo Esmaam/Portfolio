@@ -9,7 +9,6 @@ const SUB_NAV_LINKS = [
   { label: 'Projets',     sectionId: 'projects'    },
   { label: 'Parcours',    sectionId: 'parcours'    },
   { label: 'Compétences', sectionId: 'background'  },
-  { label: 'Formation',   sectionId: 'education'   },
 ]
 
 /**
