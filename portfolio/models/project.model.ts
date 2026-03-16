@@ -8,5 +8,6 @@ export class Project {
     public readonly contribution:  string,
     public readonly description:   string,
     public readonly idRole:        number | null,
+    public readonly position:      number | null,
   ) {}
 }

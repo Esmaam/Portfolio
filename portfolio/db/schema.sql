@@ -56,6 +56,7 @@ CREATE TABLE Project (
     contribution TEXT,
     description TEXT,
     id_role INTEGER,
+    position INTEGER UNIQUE,
     FOREIGN KEY (id_role) REFERENCES Role(id_role)
 );
 
