@@ -3,7 +3,7 @@ import { projectController }        from '@/controllers/project.controller'
 import { keywordController }         from '@/controllers/keyword.controller'
 import { keywordCategoryController } from '@/controllers/keyword-category.controller'
 import WorkGrid       from '@/components/work/work-grid'
-import MarqueeSection from '@/components/home/marquee-section'
+import MarqueeSection from '@/components/layout/marquee/marquee-section'
 import styles from './work.module.css'
 
 export const metadata: Metadata = {

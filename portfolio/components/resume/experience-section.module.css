@@ -68,14 +68,14 @@
 
 .entryBody {}
 
-.company {
+.roleTitle {
   font-size: 20px;
   font-weight: 700;
   color: var(--text-dark);
   margin-bottom: 4px;
 }
 
-.roleTitle {
+.company {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-muted-dark);

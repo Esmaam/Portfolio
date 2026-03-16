@@ -9,7 +9,7 @@
   display: flex;
   align-items: center;
   gap: 64px;
-  animation: scroll 35s linear infinite;
+  animation: scroll 50s linear infinite;
   width: max-content;
 }
 

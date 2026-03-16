@@ -13,9 +13,9 @@
   --bg-light:         #f2f1ef;
   --bg-dark:          #10141a;
   --bg-darker:        #080a0c;
-  --bg-card-dark:     rgba(255, 255, 255, 0.04);
-  --bg-card-dark-hover: rgba(255, 255, 255, 0.07);
-  --bg-card-light:    #ebebeb;
+  --bg-card-dark:     rgba(255, 255, 255, 0.07);
+  --bg-card-dark-hover: rgba(255, 255, 255, 0.11);
+  --bg-card-light:    #e2e1de;
 
   /* Text */
   --text-white:       #ffffff;
@@ -25,7 +25,7 @@
   --text-muted-dark:  #7a7870;
 
   /* Borders */
-  --border-dark:      rgba(255, 255, 255, 0.08);
+  --border-dark:      rgba(255, 255, 255, 0.12);
   --border-light:     rgba(0, 0, 0, 0.1);
 
   /* Tags / Pills */
