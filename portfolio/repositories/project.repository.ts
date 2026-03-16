@@ -13,7 +13,7 @@ export class ProjectRepository {
    * @returns {Promise<Project[]>} All projects.
    */
   async getAll(): Promise<Project[]> {
-    const { rows } = await this.db.execute('SELECT * FROM project')
+    const { rows } = await this.db.execute('SELECT * FROM project ORDER BY position ASC NULLS LAST')
     return (rows as unknown as ProjectRow[]).map(ProjectMapper.fromRow)
   }
 
@@ -24,7 +24,7 @@ export class ProjectRepository {
    */
   async getByRole(roleId: number): Promise<Project[]> {
     const { rows } = await this.db.execute({
-      sql:  'SELECT * FROM project WHERE id_role = ?',
+      sql:  'SELECT * FROM project WHERE id_role = ? ORDER BY position ASC NULLS LAST',
       args: [roleId],
     })
     return (rows as unknown as ProjectRow[]).map(ProjectMapper.fromRow)

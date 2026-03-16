@@ -13,12 +13,6 @@ export default function RolesSection({ roles }: Props) {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.headline}>
-          J&apos;ai exercé <strong>des activités variées</strong>{' '}
-          <span className={styles.muted}>dans des domaines différents,</span>{' '}
-          <strong>m&apos;offrant une perspective ouverte</strong>{' '}
-          <span className={styles.muted}>sur le monde.</span>
-        </h2>
         <div className={styles.grid}>
           {roles.map(({ role, company }) => (
             <div key={role.idRole} className={styles.card}>

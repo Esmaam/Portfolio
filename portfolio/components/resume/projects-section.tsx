@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import type { ProjectWithKeywords } from '@/services/project.service'
 import styles from './projects-section.module.css'
 
@@ -7,15 +8,17 @@ type Props = {
 
 /**
  * Projects section of the CV page.
- * Displays all projects with their description and associated keywords.
+ * Displays the first 4 projects with a link to the full projects page.
  */
 export default function ProjectsSection({ projects }: Props) {
+  const displayed = projects.slice(0, 4)
+
   return (
     <section id="projects" className={styles.section}>
       <div className={styles.container}>
         <h2 className={styles.sectionTitle}>Projets</h2>
         <div className={styles.grid}>
-          {projects.map(({ project, keywords }) => (
+          {displayed.map(({ project, keywords }) => (
             <div key={project.idProject} className={styles.card}>
               <div className={styles.cardHeader}>
                 <div className={styles.projectName}>{project.name}</div>
@@ -31,6 +34,9 @@ export default function ProjectsSection({ projects }: Props) {
               )}
             </div>
           ))}
+        </div>
+        <div className={styles.cta}>
+          <Link href="/work" className={styles.btn}>Voir tous les projets</Link>
         </div>
       </div>
     </section>

@@ -31,8 +31,8 @@ export default function ExperienceSection({ roles }: Props) {
                 <span className={styles.city}>{role.city}</span>
               </div>
               <div className={styles.entryBody}>
-                <div className={styles.company}>{company.name}</div>
                 <div className={styles.roleTitle}>{role.title}</div>
+                <div className={styles.company}>{company.name}</div>
                 <p className={styles.description}>{role.description}</p>
                 {keywords.length > 0 && (
                   <div className={styles.tags}>

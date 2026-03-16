@@ -87,3 +87,26 @@
   border: 1px solid var(--tag-border-dark);
   color: rgba(255, 255, 255, 0.5);
 }
+
+.cta {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+}

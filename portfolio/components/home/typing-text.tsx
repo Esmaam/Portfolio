@@ -7,7 +7,7 @@ type Props = {
   messages: string[]
 }
 
-const TYPING_SPEED   = 55
+const TYPING_SPEED   = 60
 const DELETING_SPEED = 30
 const HOLD_DURATION  = 2200
 const PAUSE_DURATION = 400

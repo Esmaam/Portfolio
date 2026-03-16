@@ -6,6 +6,7 @@ export type ProjectRow = {
   contribution: string
   description:  string
   id_role:      number | null
+  position:     number | null
 }
 
 /**
@@ -18,6 +19,6 @@ export class ProjectMapper {
    * @returns {Project} The mapped Project instance.
    */
   static fromRow(row: ProjectRow): Project {
-    return new Project(row.id_project, row.name, row.contribution, row.description, row.id_role)
+    return new Project(row.id_project, row.name, row.contribution, row.description, row.id_role, row.position)
   }
 }
