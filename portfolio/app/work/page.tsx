@@ -37,8 +37,8 @@ export default async function WorkPage() {
     <main className={styles.main}>
       <section className={styles.hero}>
         <h1 className={styles.heroTitle}>
-          Quelques projets <span className={styles.muted}>sur lesquels</span>{' '}
-          <strong>j&apos;ai travaillé.</strong>
+          <strong>Quelques projets</strong> <span className={styles.muted}>sur lesquels</span>{' '}
+          j&apos;ai travaillé.
         </h1>
       </section>
 
