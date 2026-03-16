@@ -36,7 +36,7 @@ export default function HeroSection({ owner, heroMessages }: Props) {
         </span>
       </h1>
       <p className={styles.sub}>Conceptrice-développeuse logiciel junior</p>
-      <Link href="/contact" className={styles.btn}>Prenons contact</Link>
+      <Link href="/work" className={styles.btn}>Voir mes projets</Link>
       <span className={styles.scrollHint} aria-hidden="true">↓</span>
     </section>
   )
