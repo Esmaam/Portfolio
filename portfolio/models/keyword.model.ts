@@ -5,5 +5,6 @@ export class Keyword {
   constructor(
     public readonly idKeyword:  number,
     public readonly text:       string,
+    public readonly idCategory: number | null,
   ) {}
 }

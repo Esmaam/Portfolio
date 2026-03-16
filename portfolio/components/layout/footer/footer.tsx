@@ -14,6 +14,13 @@ export default function Footer() {
       </div>
       <div className={styles.links}>
         <a
+          href="https://github.com/Esmaam/Portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+        <a
           href="https://www.linkedin.com/in/ama%C3%AFa-mescco-88472a308/"
           target="_blank"
           rel="noopener noreferrer"
