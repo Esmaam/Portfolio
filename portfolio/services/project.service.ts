@@ -1,6 +1,7 @@
 import { ProjectRepository } from '@/repositories/project.repository'
 import { KeywordRepository } from '@/repositories/keyword.repository'
 import { ProjectImageRepository } from '@/repositories/project-image.repository'
+import type { Project } from '@/models/project.model'
 import type { ProjectWithKeywords, ProjectWithDetails } from '@/dtos/project.dto'
 
 export type { ProjectWithKeywords, ProjectWithDetails }

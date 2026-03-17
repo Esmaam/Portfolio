@@ -1,5 +1,6 @@
 import { SkillCategoryRepository } from '@/repositories/skill-category.repository'
 import { SkillRepository } from '@/repositories/skill.repository'
+import type { SkillCategory } from '@/models/skill-category.model'
 import type { SkillCategoryWithSkills } from '@/dtos/skill-category.dto'
 
 export type { SkillCategoryWithSkills }
