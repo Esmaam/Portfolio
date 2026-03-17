@@ -114,6 +114,7 @@ export default function WorkGrid({ projects, categories }: Props) {
         {filtered.map(({ project, keywords, images }) => (
           <div key={project.idProject} className={styles.card}>
             <ImageCarousel
+              projectId={project.idProject}
               images={images.map(img => img.filename)}
               projectName={project.name}
             />
