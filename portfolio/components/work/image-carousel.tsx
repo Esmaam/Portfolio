@@ -13,6 +13,7 @@ type Props = {
 
 const VISIBILITY_THRESHOLD = 0    // start loading as soon as the element enters the DOM
 const AUTOPLAY_INTERVAL_MS = 1500 // ms between image transitions on hover
+const BLUR_PLACEHOLDER = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
 
 /**
  * Image carousel for a project card.
@@ -73,9 +74,20 @@ export default function ImageCarousel({ projectId, images, projectName, priority
             <div key={filename} className={`${styles.slide} ${i === index ? styles.slideActive : ''}`}>
               <Image
                 src={`/projects/${projectId}/${filename}`}
+                alt=""
+                fill
+                aria-hidden
+                priority={priority && i === 0}
+                className={styles.imgBg}
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+              <Image
+                src={`/projects/${projectId}/${filename}`}
                 alt={`${projectName} – image ${i + 1}`}
                 fill
                 priority={priority && i === 0}
+                placeholder="blur"
+                blurDataURL={BLUR_PLACEHOLDER}
                 className={styles.img}
                 sizes="(max-width: 900px) 100vw, 50vw"
               />
