@@ -10,18 +10,20 @@ type Props = {
   projectName: string
 }
 
-const VISIBILITY_THRESHOLD  = 0.1  // % of the element visible before loading images
-const AUTOPLAY_INTERVAL_MS  = 1500 // ms between image transitions on hover
+const VISIBILITY_THRESHOLD = 0.1  // % of the element visible before loading images
+const AUTOPLAY_INTERVAL_MS = 1500 // ms between image transitions on hover
 
 /**
  * Image carousel for a project card.
  * Lazy-loads images via IntersectionObserver — only renders when visible.
+ * Auto-plays on hover, stops on manual navigation.
  */
 export default function ImageCarousel({ projectId, images, projectName }: Readonly<Props>) {
-  const [index, setIndex]       = useState(0)
-  const [visible, setVisible]   = useState(false)
-  const [hovered, setHovered]   = useState(false)
-  const wrapperRef              = useRef<HTMLDivElement>(null)
+  const [index,   setIndex]   = useState(0)
+  const [visible, setVisible] = useState(false)
+  const [hovered, setHovered] = useState(false)
+  const [paused,  setPaused]  = useState(false)
+  const wrapperRef            = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const el = wrapperRef.current
@@ -35,13 +37,26 @@ export default function ImageCarousel({ projectId, images, projectName }: Readon
   }, [])
 
   useEffect(() => {
-    if (!hovered || images.length <= 1) return
+    if (!hovered || paused || images.length <= 1) return
     const interval = setInterval(() => setIndex(i => (i + 1) % images.length), AUTOPLAY_INTERVAL_MS)
     return () => clearInterval(interval)
-  }, [hovered, images.length])
+  }, [hovered, paused, images.length])
 
-  const prev = () => setIndex(i => (i - 1 + images.length) % images.length)
-  const next = () => setIndex(i => (i + 1) % images.length)
+  function prev() {
+    setPaused(true)
+    setIndex(i => (i - 1 + images.length) % images.length)
+  }
+
+  function next() {
+    setPaused(true)
+    setIndex(i => (i + 1) % images.length)
+  }
+
+  function handleMouseLeave() {
+    setHovered(false)
+    setPaused(false)
+    setIndex(0)
+  }
 
   return (
     <div
@@ -49,17 +64,21 @@ export default function ImageCarousel({ projectId, images, projectName }: Readon
       className={styles.wrapper}
       role="presentation"
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => { setHovered(false); setIndex(0) }}
+      onMouseLeave={handleMouseLeave}
     >
       {visible && images.length > 0 ? (
         <>
-          <Image
-            src={`/projects/${projectId}/${images[index]}`}
-            alt={`${projectName} – image ${index + 1}`}
-            fill
-            className={styles.img}
-            sizes="(max-width: 900px) 100vw, 50vw"
-          />
+          {images.map((filename, i) => (
+            <div key={filename} className={`${styles.slide} ${i === index ? styles.slideActive : ''}`}>
+              <Image
+                src={`/projects/${projectId}/${filename}`}
+                alt={`${projectName} – image ${i + 1}`}
+                fill
+                className={styles.img}
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
+          ))}
           {images.length > 1 && (
             <>
               <button className={`${styles.btn} ${styles.btnPrev}`} onClick={prev} aria-label="Image précédente">‹</button>
@@ -69,7 +88,7 @@ export default function ImageCarousel({ projectId, images, projectName }: Readon
                   <button
                     key={filename}
                     className={`${styles.dot} ${i === index ? styles.dotActive : ''}`}
-                    onClick={() => setIndex(i)}
+                    onClick={() => { setPaused(true); setIndex(i) }}
                     aria-label={`Image ${i + 1}`}
                   />
                 ))}
