@@ -1,6 +1,6 @@
 # Portfolio — Amaïa Mescco
 
-Portfolio personnel accessible à l'adresse https://portfolio-amaiamescco.vercel.app/. Ce projet m'a servi d'entraînement pour découvrir React et Next.js en conditions réelles, après une formation principalement orientée back-end.
+Portfolio personnel accessible à l'adresse https://portfolio-amaiamescco.vercel.app/. Ce projet m'a servi d'entraînement pour découvrir React et Next.js en conditions réelles, après une formation principalement orientée back-end. Le front-end (HTML/CSS/animations) est inspiré de recherches sur des designs type portoflio qui me plaisaient, et en grande partie codé à l'aide de Claude Code.
 
 ## Stack
 

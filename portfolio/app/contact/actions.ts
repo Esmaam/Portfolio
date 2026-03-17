@@ -1,7 +1,8 @@
 'use server'
 
 import { ownerController } from '@/controllers/owner.controller'
-import { ContactService, type ContactFormData } from '@/services/contact.service'
+import { ContactService } from '@/services/contact.service'
+import type { ContactFormData } from '@/dtos/contact.dto'
 import { NodemailerEmailSender } from '@/lib/email-sender'
 
 export type ContactActionResult = {

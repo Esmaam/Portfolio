@@ -2,7 +2,7 @@ import db from '@/lib/database'
 import { SkillCategoryRepository } from '@/repositories/skill-category.repository'
 import { SkillRepository } from '@/repositories/skill.repository'
 import { SkillCategoryService } from '@/services/skill-category.service'
-import type { SkillCategoryWithSkills } from '@/services/skill-category.service'
+import type { SkillCategoryWithSkills } from '@/dtos/skill-category.dto'
 import type { SkillCategory } from '@/models/skill-category.model'
 
 const service = new SkillCategoryService(new SkillCategoryRepository(db), new SkillRepository(db))

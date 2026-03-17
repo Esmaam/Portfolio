@@ -1,4 +1,4 @@
-import type { RoleWithDetails } from '@/services/role.service'
+import type { RoleWithDetails } from '@/dtos/role.dto'
 import type { Education } from '@/models/education.model'
 import styles from './parcours-section.module.css'
 

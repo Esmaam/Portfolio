@@ -4,7 +4,7 @@ import { KeywordRepository } from '@/repositories/keyword.repository'
 import { ProjectImageRepository } from '@/repositories/project-image.repository'
 import { ProjectService } from '@/services/project.service'
 import type { Project } from '@/models/project.model'
-import type { ProjectWithKeywords, ProjectWithDetails } from '@/services/project.service'
+import type { ProjectWithKeywords, ProjectWithDetails } from '@/dtos/project.dto'
 
 const service = new ProjectService(
   new ProjectRepository(db),

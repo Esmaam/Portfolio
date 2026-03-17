@@ -4,7 +4,7 @@ import { CompanyRepository } from '@/repositories/company.repository'
 import { KeywordRepository } from '@/repositories/keyword.repository'
 import { RoleService } from '@/services/role.service'
 import type { Role } from '@/models/role.model'
-import type { RoleWithDetails } from '@/services/role.service'
+import type { RoleWithDetails } from '@/dtos/role.dto'
 
 const service = new RoleService(
   new RoleRepository(db),
