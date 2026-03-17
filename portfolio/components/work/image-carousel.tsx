@@ -8,9 +8,10 @@ type Props = {
   projectId:   number
   images:      string[]
   projectName: string
+  priority?:   boolean
 }
 
-const VISIBILITY_THRESHOLD = 0.1  // % of the element visible before loading images
+const VISIBILITY_THRESHOLD = 0    // start loading as soon as the element enters the DOM
 const AUTOPLAY_INTERVAL_MS = 1500 // ms between image transitions on hover
 
 /**
@@ -18,7 +19,7 @@ const AUTOPLAY_INTERVAL_MS = 1500 // ms between image transitions on hover
  * Lazy-loads images via IntersectionObserver — only renders when visible.
  * Auto-plays on hover, stops on manual navigation.
  */
-export default function ImageCarousel({ projectId, images, projectName }: Readonly<Props>) {
+export default function ImageCarousel({ projectId, images, projectName, priority = false }: Readonly<Props>) {
   const [index,   setIndex]   = useState(0)
   const [visible, setVisible] = useState(false)
   const [hovered, setHovered] = useState(false)
@@ -74,6 +75,7 @@ export default function ImageCarousel({ projectId, images, projectName }: Readon
                 src={`/projects/${projectId}/${filename}`}
                 alt={`${projectName} – image ${i + 1}`}
                 fill
+                priority={priority && i === 0}
                 className={styles.img}
                 sizes="(max-width: 900px) 100vw, 50vw"
               />
