@@ -1,10 +1,7 @@
 import type { IEmailSender } from '@/lib/email-sender'
+import type { ContactFormData } from '@/dtos/contact.dto'
 
-export type ContactFormData = {
-  name:    string
-  email:   string
-  message: string
-}
+export type { ContactFormData }
 
 /**
  * Handles the business logic for sending contact form messages.

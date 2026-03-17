@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { ProjectWithKeywords } from '@/services/project.service'
+import type { ProjectWithKeywords } from '@/dtos/project.dto'
 import styles from './projects-section.module.css'
 
 type Props = {

@@ -1,4 +1,4 @@
-import type { SkillCategoryWithSkills } from '@/services/skill-category.service'
+import type { SkillCategoryWithSkills } from '@/dtos/skill-category.dto'
 import styles from './skills-section.module.css'
 
 type Props = {

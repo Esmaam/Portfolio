@@ -1,15 +1,9 @@
 import { RoleRepository } from '@/repositories/role.repository'
 import { CompanyRepository } from '@/repositories/company.repository'
 import { KeywordRepository } from '@/repositories/keyword.repository'
-import type { Role } from '@/models/role.model'
-import type { Company } from '@/models/company.model'
-import type { Keyword } from '@/models/keyword.model'
+import type { RoleWithDetails } from '@/dtos/role.dto'
 
-export type RoleWithDetails = {
-  role:     Role
-  company:  Company
-  keywords: Keyword[]
-}
+export type { RoleWithDetails }
 
 /**
  * Business logic for the Role entity.

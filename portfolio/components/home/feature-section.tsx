@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { RoleWithDetails } from '@/services/role.service'
+import type { RoleWithDetails } from '@/dtos/role.dto'
 import styles from './feature-section.module.css'
 
 type Props = {

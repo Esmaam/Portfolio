@@ -1,12 +1,8 @@
 import { SkillCategoryRepository } from '@/repositories/skill-category.repository'
 import { SkillRepository } from '@/repositories/skill.repository'
-import type { SkillCategory } from '@/models/skill-category.model'
-import type { Skill } from '@/models/skill.model'
+import type { SkillCategoryWithSkills } from '@/dtos/skill-category.dto'
 
-export type SkillCategoryWithSkills = {
-  category: SkillCategory
-  skills:   Skill[]
-}
+export type { SkillCategoryWithSkills }
 
 /**
  * Business logic for the SkillCategory entity.
