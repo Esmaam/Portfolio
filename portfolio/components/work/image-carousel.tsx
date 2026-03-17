@@ -13,7 +13,8 @@ type Props = {
 
 const VISIBILITY_THRESHOLD = 0    // start loading as soon as the element enters the DOM
 const AUTOPLAY_INTERVAL_MS = 1500 // ms between image transitions on hover
-const BLUR_PLACEHOLDER = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
+// 1×1 px SVG with #1a1f2e fill, base64-encoded
+const BLUR_PLACEHOLDER = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxYTFmMmUiLz48L3N2Zz4='
 
 /**
  * Image carousel for a project card.
