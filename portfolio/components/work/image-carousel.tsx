@@ -11,9 +11,9 @@ type Props = {
   priority?:   boolean
 }
 
-const VISIBILITY_THRESHOLD = 0    // start loading as soon as the element enters the DOM
 const AUTOPLAY_INTERVAL_MS = 1500 // ms between image transitions on hover
-const BLUR_PLACEHOLDER = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=='
+// 1×1 px SVG with #1a1f2e fill, base64-encoded
+const BLUR_PLACEHOLDER = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxIiBoZWlnaHQ9IjEiPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiMxYTFmMmUiLz48L3N2Zz4='
 
 /**
  * Image carousel for a project card.
@@ -22,21 +22,9 @@ const BLUR_PLACEHOLDER = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAB
  */
 export default function ImageCarousel({ projectId, images, projectName, priority = false }: Readonly<Props>) {
   const [index,   setIndex]   = useState(0)
-  const [visible, setVisible] = useState(false)
   const [hovered, setHovered] = useState(false)
   const [paused,  setPaused]  = useState(false)
   const wrapperRef            = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const el = wrapperRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
-      { threshold: VISIBILITY_THRESHOLD }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   useEffect(() => {
     if (!hovered || paused || images.length <= 1) return
@@ -64,11 +52,10 @@ export default function ImageCarousel({ projectId, images, projectName, priority
     <div
       ref={wrapperRef}
       className={styles.wrapper}
-      role="presentation"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={handleMouseLeave}
     >
-      {visible && images.length > 0 ? (
+      {images.length > 0 && (
         <>
           {images.map((filename, i) => (
             <div key={filename} className={`${styles.slide} ${i === index ? styles.slideActive : ''}`}>
@@ -110,8 +97,6 @@ export default function ImageCarousel({ projectId, images, projectName, priority
             </>
           )}
         </>
-      ) : (
-        <div className={styles.placeholder} />
       )}
     </div>
   )
