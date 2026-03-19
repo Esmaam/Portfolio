@@ -13,7 +13,7 @@ const LANGUAGES = [
   { name: 'Chinois',   level: 'Notions' },
 ]
 
-const INTERESTS = ['Jeux vidéo', 'Architecture logiciel', 'Voyages et cultures du monde']
+const INTERESTS = ['Jeux vidéo', 'Architecture logicielle', 'Voyages et cultures du monde']
 
 /**
  * About section of the CV page.
