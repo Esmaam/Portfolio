@@ -8,7 +8,7 @@ type Props = {
 }
 
 const TYPING_SPEED   = 45
-const DELETING_SPEED = 8
+const DELETING_SPEED = 3
 const HOLD_DURATION  = 1500
 const PAUSE_DURATION = 250
 
