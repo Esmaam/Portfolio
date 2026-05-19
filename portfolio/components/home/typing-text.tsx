@@ -7,10 +7,10 @@ type Props = {
   messages: string[]
 }
 
-const TYPING_SPEED   = 75
-const DELETING_SPEED = 30
-const HOLD_DURATION  = 2200
-const PAUSE_DURATION = 400
+const TYPING_SPEED   = 50
+const DELETING_SPEED = 20
+const HOLD_DURATION  = 1500
+const PAUSE_DURATION = 250
 
 /**
  * Cycles through a list of messages with a typewriter effect.
